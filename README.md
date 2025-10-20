@@ -17,74 +17,115 @@ This project focuses on backend development, database design, API security, and 
 ---
 
 ## Project Overview
-The Airbnb Clone Project is designed to replicate the core functionalities of Airbnb.  
-It covers full-stack development, emphasizing backend architecture, database management, API security, and continuous integration/deployment practices.
+The Airbnb Clone Project replicates the core functionalities of Airbnb, allowing users to book properties, leave reviews, and make secure payments.  
+**Project Goals:**
+- Build a scalable backend system for property listings, bookings, and payments.  
+- Implement secure APIs and database management.  
+- Apply CI/CD pipelines for automated testing and deployment.  
+- Integrate Django, MySQL, and GraphQL for a full-stack solution.
 
-**Learning Objectives:**
-- Master GitHub collaborative workflows.
-- Understand backend architecture and relational database design.
-- Implement API security measures.
-- Set up CI/CD pipelines for automated testing and deployment.
-- Integrate Django, MySQL, and GraphQL effectively.
+**Tech Stack:** Django, MySQL, GraphQL, Docker, GitHub Actions.
 
 ---
 
 ## Team Roles
-- **Backend Developer:** Implements API endpoints, business logic, and server-side functionality.
-- **Database Administrator:** Designs database schema, manages data, and ensures data integrity.
-- **Frontend Developer:** Builds user interfaces and connects them to APIs.
-- **DevOps Engineer:** Sets up CI/CD pipelines, Docker containers, and deployment processes.
-- **QA Engineer:** Tests features, verifies functionality, and ensures quality standards.
+- **Backend Developer:** Builds API endpoints, business logic, and server-side functionalities.  
+- **Database Administrator (DBA):** Designs relational database schemas, ensures data integrity, and manages migrations.  
+- **Frontend Developer:** Creates the user interface and integrates it with the backend APIs.  
+- **DevOps Engineer:** Implements CI/CD pipelines, Docker containerization, and deployment automation.  
+- **QA Engineer:** Tests features, verifies functionality, and ensures quality and compliance with project standards.
 
 ---
 
 ## Technology Stack
-- **Django:** Web framework to build RESTful APIs and handle server-side logic.
-- **MySQL:** Relational database to store users, properties, bookings, reviews, and payments.
-- **GraphQL:** API query language for flexible and efficient data retrieval.
-- **Docker:** Containerization to ensure consistent environments across development and production.
-- **GitHub Actions:** CI/CD tool to automate testing and deployment workflows.
+- **Django:** A Python web framework for building RESTful APIs and server-side logic.  
+- **MySQL:** A relational database for storing users, properties, bookings, reviews, and payments.  
+- **GraphQL:** Provides flexible API queries to fetch only the necessary data for frontend components.  
+- **Docker:** Containerizes applications to create consistent development and production environments.  
+- **GitHub Actions:** Automates testing and deployment pipelines to ensure faster, reliable, and repeatable workflows.
+
+**Contribution to Project Goals:** Each technology ensures a scalable, secure, and maintainable system: Django and GraphQL handle data flow; MySQL stores structured data reliably; Docker ensures environment consistency; GitHub Actions streamlines CI/CD automation.
 
 ---
 
 ## Database Design
-**Entities:**
-- **Users:** id, name, email, password; can have multiple bookings.
-- **Properties:** id, title, description, price, host_id; belongs to a host.
-- **Bookings:** id, user_id, property_id, check_in, check_out; belongs to a user and a property.
-- **Reviews:** id, booking_id, rating, comment; tied to a booking.
-- **Payments:** id, booking_id, amount, status; linked to bookings.
 
-**Relationships:**
-- A user can have multiple bookings.
-- Each booking belongs to a single property.
-- A property can have multiple reviews.
-- Payments are associated with bookings.
+### Entities and Fields
+1. **Users**
+   - `user_id`: Primary identifier
+   - `name`: Full name
+   - `email`: Unique email address
+   - `password`: Hashed password
+   - `role`: Role in system (user, host, admin)
+
+2. **Properties**
+   - `property_id`: Primary identifier
+   - `title`: Property name
+   - `description`: Property details
+   - `price`: Price per night
+   - `host_id`: User ID of the host
+
+3. **Bookings**
+   - `booking_id`: Primary identifier
+   - `user_id`: ID of booking user
+   - `property_id`: ID of booked property
+   - `check_in`: Start date
+   - `check_out`: End date
+
+4. **Reviews**
+   - `review_id`: Primary identifier
+   - `booking_id`: Associated booking
+   - `rating`: Numeric rating (1-5)
+   - `comment`: Optional text feedback
+   - `created_at`: Timestamp
+
+5. **Payments**
+   - `payment_id`: Primary identifier
+   - `booking_id`: Associated booking
+   - `amount`: Paid amount
+   - `status`: Payment status (pending, completed, failed)
+   - `payment_date`: Timestamp
+
+### Relationships
+- A **User** can have multiple **Bookings**.  
+- Each **Booking** belongs to one **Property**.  
+- A **Property** can have multiple **Reviews**.  
+- **Payments** are linked to individual **Bookings**.
 
 ---
 
 ## Feature Breakdown
-- **User Management:** Sign up, login, profile editing, and authentication.
-- **Property Management:** Create, update, and list properties for booking.
-- **Booking System:** Users can book properties with selectable check-in/check-out dates.
-- **Payment Processing:** Securely handle payment transactions for bookings.
-- **Review System:** Users can leave ratings and feedback for booked properties.
+- **User Management:** Users can sign up, log in, and manage profiles securely.  
+- **Property Management:** Hosts can create, edit, and list properties for booking.  
+- **Booking System:** Users can book properties with selectable dates and receive confirmation.  
+- **Payment Processing:** Payments are handled securely, linking transactions to bookings.  
+- **Review System:** Users leave ratings and feedback for properties after their stay.  
 
 ---
 
 ## API Security
-- **Authentication:** Verify user identities to prevent unauthorized access.
-- **Authorization:** Restrict actions based on user roles and permissions.
-- **Rate Limiting:** Protect the API from abuse and excessive requests.
-- **Data Encryption:** Ensure sensitive data like passwords and payment info are secure.
+- **Authentication:** Ensures only registered users can access protected endpoints.  
+- **Authorization:** Restricts actions based on user roles (e.g., host, admin, guest).  
+- **Rate Limiting:** Protects against abuse by limiting requests per user/IP.  
+- **Data Encryption:** Encrypts sensitive data such as passwords and payment information to prevent unauthorized access.
+
+**Importance:** These measures protect user privacy, secure payments, and maintain system integrity.
 
 ---
 
 ## CI/CD Pipeline
-Continuous Integration/Continuous Deployment automates testing and deployment of the project:
-- **Purpose:** Detect issues early, maintain code quality, and ensure smooth deployment.
-- **Tools:** GitHub Actions for automated testing, Docker for containerization.
-- **Benefits:** Faster development cycles, fewer deployment errors, consistent environments.
+Continuous Integration and Deployment automate testing and deployment to ensure fast, reliable, and consistent development.
+
+**Benefits:**
+- Detect issues early through automated testing.  
+- Ensure reliable deployment to staging and production environments.  
+- Maintain consistent environments with containerization.  
+
+**Tools Used:**
+- **GitHub Actions:** Automates testing and deployment workflows.  
+- **Docker:** Ensures applications run consistently across environments.  
+
+By integrating CI/CD, the project achieves higher quality, faster delivery, and reduced human errors.
 
 ---
 
